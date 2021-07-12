@@ -29,7 +29,7 @@ public class UsuarioControllerTest {
 	public void start() {
 
 		usuario = new Usuario(0L, "Admin", "admin_", "admin123", "admin@email.com");
-		usuarioUpdate = new Usuario(0L, "Bruna de Freitas", "brun4_", "7654128", "brunafreitas@email.com");
+		usuarioUpdate = new Usuario(4L, "Bruna de Freitas", "brun4_", "7654128", "brunafreitas@email.com");
 
 	}
 
@@ -48,7 +48,7 @@ public class UsuarioControllerTest {
 	public void deveMostrarTodosUsuarios() {
 
 		ResponseEntity<String> resposta = testRestTemplate.withBasicAuth("brun4_", "7654128")
-				.exchange("/usuarios/todos", HttpMethod.GET, null, String.class);
+				.exchange("/usuarios/all", HttpMethod.GET, null, String.class);
 		assertEquals(HttpStatus.OK, resposta.getStatusCode());
 	}
 
