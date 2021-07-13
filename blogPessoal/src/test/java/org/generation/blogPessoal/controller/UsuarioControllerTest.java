@@ -50,7 +50,11 @@ public class UsuarioControllerTest {
 	@Test
 	public void deveMostrarTodosUsuarios() {
 
+<<<<<<< HEAD
 		ResponseEntity<String> resposta = testRestTemplate.withBasicAuth("admin_", "admin123")
+=======
+		ResponseEntity<String> resposta = testRestTemplate.withBasicAuth("brun4_", "7654128")
+>>>>>>> 245410a3d1ccf1b92f55612d110810726c494562
 				.exchange("/usuarios/all", HttpMethod.GET, null, String.class);
 		assertEquals(HttpStatus.OK, resposta.getStatusCode());
 	}
