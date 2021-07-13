@@ -11,6 +11,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PositiveOrZero;
 import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -35,6 +36,9 @@ public class Postagem {
 	@Temporal(TemporalType.TIMESTAMP) //qual tipo de tempo
 	private Date date = new java.sql.Date(System.currentTimeMillis()); //vai colocar a data que o dado passou por essa classe
 
+	@PositiveOrZero
+	private int curtidas;
+	
 	@ManyToOne
 	@JsonIgnoreProperties("postagem")
 	private Tema tema;
@@ -91,6 +95,14 @@ public class Postagem {
 
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
+	}
+
+	public int getCurtidas() {
+		return curtidas;
+	}
+
+	public void setCurtidas(int curtidas) {
+		this.curtidas = curtidas;
 	}
 	
 	

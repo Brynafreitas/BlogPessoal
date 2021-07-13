@@ -18,7 +18,7 @@ public class BasicSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	
 	 @Autowired 
-	 private UserDetailsService service;
+	 private UserDetailsServiceImpl service;
 	
 	
 	@Override
