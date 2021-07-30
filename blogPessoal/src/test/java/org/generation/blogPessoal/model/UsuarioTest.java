@@ -23,11 +23,12 @@ public class UsuarioTest {
 	
 	@Autowired
 	private final Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
-
+//linha instanciada para pegar erro
+	
 	@BeforeEach
 	
 	public void start() {
-		usuario = new Usuario(0L,"Bruna","bruna_","testando2","bruninha13@gmail.com");
+		usuario = new Usuario(0L,"Bruna","bruna_","testando2","bruninha13@gmail.com"); //vai conferir todos atributos da model e se estão dentro das regras ex notnull..
 		usuarioErro = new Usuario();
 		
 		}
@@ -40,12 +41,12 @@ public class UsuarioTest {
 		usuario.setSenha("testando123");
 		usuario.setEmail("bruna13@email.com");
 		
-		Set<ConstraintViolation<Usuario>> violations = validator.validate(usuario);
+		Set<ConstraintViolation<Usuario>> violations = validator.validate(usuario); //vai guardar todos os erros nessa linha
 		
 		
 		System.out.println(violations.toString());
 		
-		assertTrue(violations.isEmpty()); 
+		assertTrue(violations.isEmpty());  //se estiver sem erro nenhum vai passar 
 		
 	}
 
@@ -59,7 +60,7 @@ public class UsuarioTest {
 		
 		System.out.println(violations.toString());
 		
-		assertFalse(violations.isEmpty());  
+		assertFalse(violations.isEmpty());  //funciona o contrario do true se  estiver com erro vai passar
 		
 	}
 	

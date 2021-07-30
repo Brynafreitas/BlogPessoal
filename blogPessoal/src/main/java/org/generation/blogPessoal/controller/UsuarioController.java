@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/usuarios")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class UsuarioController {
-	
+
 	@Autowired
 	private UsuarioRepository usuarioRepository;
 
@@ -34,11 +34,11 @@ public class UsuarioController {
 	public ResponseEntity<List<Usuario>> getAll() {
 		return ResponseEntity.ok(usuarioRepository.findAll());
 	}
-	
+
 	@GetMapping("/{id}")
-	public ResponseEntity<Usuario> getById(@PathVariable long id){
+	public ResponseEntity<Usuario> getById(@PathVariable long id) {
 		return usuarioRepository.findById(id).map(resp -> ResponseEntity.ok(resp))
-				.orElse(ResponseEntity.notFound().build());				
+				.orElse(ResponseEntity.notFound().build());
 	}
 
 	@PostMapping("/logar")
@@ -49,17 +49,16 @@ public class UsuarioController {
 
 	@PostMapping("/cadastrar")
 	public ResponseEntity<Usuario> postUsuario(@RequestBody Usuario usuario) {
-		Optional<Usuario> novoUsuario = usuarioService.cadastrarUsuario(usuario);
+		Usuario novoUsuario = usuarioService.cadastrarUsuario(usuario);
 		try {
-				return ResponseEntity.ok(novoUsuario.get());
+			return ResponseEntity.ok(novoUsuario);
 		} catch (Exception e) {
 			return ResponseEntity.badRequest().build();
 		}
-		
 	}
-	
+
 	@PutMapping("/alterar")
-	public ResponseEntity<Usuario> putUsuario(@RequestBody Usuario usuario){
+	public ResponseEntity<Usuario> putUsuario(@RequestBody Usuario usuario) {
 		Optional<Usuario> updateUsuario = usuarioService.atualizarUsuario(usuario);
 		try {
 			return ResponseEntity.ok(updateUsuario.get());
@@ -69,7 +68,3 @@ public class UsuarioController {
 	}
 
 }
-	
-	
-
-

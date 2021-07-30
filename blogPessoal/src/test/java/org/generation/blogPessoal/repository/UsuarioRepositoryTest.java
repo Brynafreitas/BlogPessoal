@@ -19,13 +19,14 @@ import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 public class UsuarioRepositoryTest {
 
 	@Autowired
-	private UsuarioRepository repository;
+	private UsuarioRepository repository; //injetado classe repository para pegarmos os metodos dela
 
 	@BeforeAll
 	public void start() {
 		Usuario usuario = new Usuario(0L, "Jonathan Silva", "jonathanzika", "zikabalad4", "souzika@email.com");
 		if (repository.findByEmail(usuario.getEmail()).isEmpty())
 			repository.save(usuario);
+		//com anotação !usuarioRepository o ponto de explicação significa se não estiver presente 
 
 		usuario = new Usuario(0L, "Luis Henrique", "rique_fritas", "1234567", "riqueairfryers@email.com");
 		if (repository.findByEmail(usuario.getEmail()).isEmpty())
@@ -50,7 +51,7 @@ public class UsuarioRepositoryTest {
 	public void findAllByNomeContainingIgnoreCaseRetornaTresUsuarios() {
 		List<Usuario> usuarios = repository.findAllByNomeContainingIgnoreCase("Jonathan");
 
-		assertEquals(1, usuarios.size());
+		assertEquals(1, usuarios.size()); //essa lista vai trazer de acordo com quantos números temos na lista
 	}
 
 	@Disabled

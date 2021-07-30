@@ -19,19 +19,19 @@ public class UsuarioService {
 	@Autowired
 	private UsuarioRepository usuarioRepository;
 
-	public Optional<Usuario> cadastrarUsuario(Usuario usuario) {
-		
-		
-		if(usuarioRepository.findByUsuario(usuario.getUsuario()).isPresent())
-			return null;
-		
-		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+	public Usuario cadastrarUsuario(Usuario usuario) {
 
-		String senhaEncoder = encoder.encode(usuario.getSenha());
-		usuario.setSenha(senhaEncoder);
 
-		return Optional.of(usuarioRepository.save(usuario));
-	}
+        if(usuarioRepository.findByUsuario(usuario.getUsuario()).isPresent())
+            return null;
+
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+
+        String senhaEncoder = encoder.encode(usuario.getSenha());
+        usuario.setSenha(senhaEncoder);
+
+        return (usuarioRepository.save(usuario));
+    }
 
 	
 	public Optional<Usuario> atualizarUsuario(Usuario usuario){
@@ -69,6 +69,12 @@ public class UsuarioService {
 				usuarioLogin.get().setToken(authHeader);				
 				usuarioLogin.get().setNome(usuario.get().getNome());
 				usuarioLogin.get().setSenha(usuario.get().getSenha());
+				usuarioLogin.get().setFoto(usuario.get().getFoto());
+				usuarioLogin.get().setTipo(usuario.get().getTipo());
+				usuarioLogin.get().setEmail(usuario.get().getEmail());
+				
+				
+
 				
 				return usuarioLogin;
 
